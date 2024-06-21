@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 15px 5px;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 10px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ header }}</h1>
+    <table>
+        <tr>
+            {% for day in week_days %}
+                <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+        {% for week in calendar %}
+            <tr>
+                {% for day in week %}
+                    <td>{{ day if day != 0 else '' }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
