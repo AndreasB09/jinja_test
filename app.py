@@ -20,7 +20,7 @@ def home():
     return render_template(
         'calendar.html',
         title="Calendar",
-        header=f"Calendar for {calendar.month_name[month]} {year}",
+        header=f"{day} {calendar.month_name[month]} {year}",
         week_days=week_days,
         calendar=calendar_data,
         current_day=day
