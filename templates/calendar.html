@@ -17,7 +17,7 @@
         {% for week in calendar %}
             <tr>
                 {% for day in week %}
-                    <td class="{{ 'sunday' if loop.index == 7 and day != 0 else '' }}">{{ day if day != 0 else '' }}</td>
+                    <td class="{% if loop.index == 7 and day != 0 %}sunday {% endif %}{% if day == current_day %}current-day{% endif %}">{{ day if day != 0 else '' }}</td>
                 {% endfor %}
             </tr>
         {% endfor %}

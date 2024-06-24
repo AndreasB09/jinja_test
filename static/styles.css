@@ -18,3 +18,7 @@ th.sunday, td.sunday {
     background-color: #ffcccc;
     color: #ff0000;
 }
+td.current-day {
+    background-color: #ccffcc;
+    color: #006600;
+}

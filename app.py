@@ -14,6 +14,7 @@ def home():
     now = datetime.now()
     year = now.year
     month = now.month
+    day = now.day
     calendar_data = create_calendar(year, month)
     week_days = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     return render_template(
@@ -21,7 +22,8 @@ def home():
         title="Calendar",
         header=f"Calendar for {calendar.month_name[month]} {year}",
         week_days=week_days,
-        calendar=calendar_data
+        calendar=calendar_data,
+        current_day=day
     )
 
 if __name__ == "__main__":
