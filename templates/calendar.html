@@ -5,13 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function updateCalendar() {
+            document.getElementById('calendar-select').submit();
+        }
+    </script>
 </head>
 <body>
     <h1>{{ header }}</h1>
+    <form method="GET" action="/" id="calendar-select">
+        <label for="month">Month:</label>
+        <select name="month" id="month" onchange="updateCalendar()">
+            {% for i in range(1, 13) %}
+                <option value="{{ i }}" {% if i == current_month %} selected {% endif %}>{{ calendar_module.month_name[i] }}</option>
+            {% endfor %}
+        </select>
+        <label for="year">Year:</label>
+        <select name="year" id="year" onchange="updateCalendar()">
+            {% for y in range(current_year - 5, current_year + 6) %}
+                <option value="{{ y }}" {% if y == current_year %} selected {% endif %}>{{ y }}</option>
+            {% endfor %}
+        </select>
+    </form>
     <table>
         <tr>
             {% for day in week_days %}
-                <th class="{{ 'sunday' if day == 'Sun' else ''}}">{{ day }}</th>
+                <th class="{{ 'sunday' if day == 'Sun' else '' }}">{{ day }}</th>
             {% endfor %}
         </tr>
         {% for week in calendar %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import calendar
 from datetime import datetime
 
@@ -9,21 +9,30 @@ def create_calendar(year, month):
     month_days = cal.monthdayscalendar(year, month)
     return month_days
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     now = datetime.now()
-    year = now.year
-    month = now.month
+    current_year = now.year
+    current_month = now.month
     day = now.day
-    calendar_data = create_calendar(year, month)
-    week_days = [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+
+    selected_year = request.args.get('year', current_year, type=int)
+    selected_month = request.args.get('month', current_month, type=int)
+
+    calendar_data = create_calendar(selected_year, selected_month)
+    week_days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    header = f"{day} {calendar.month_name[selected_month]} {selected_year}"
+
     return render_template(
         'calendar.html',
         title="Calendar",
-        header=f"{day} {calendar.month_name[month]} {year}",
+        header=header,
         week_days=week_days,
         calendar=calendar_data,
-        current_day=day
+        current_day=day,
+        current_month=selected_month,
+        current_year=selected_year,
+        calendar_module=calendar
     )
 
 if __name__ == "__main__":

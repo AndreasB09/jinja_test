@@ -26,3 +26,7 @@ td.current-day {
     background-color: #33897D;
     color: #fff;
 }
+form {
+    text-align: center;
+    margin-top: 50px;
+}
