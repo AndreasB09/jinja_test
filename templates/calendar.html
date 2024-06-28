@@ -17,13 +17,13 @@
         <label for="month">Month:</label>
         <select name="month" id="month" onchange="updateCalendar()">
             {% for i in range(1, 13) %}
-                <option value="{{ i }}" {% if i == current_month %} selected {% endif %}>{{ calendar_module.month_name[i] }}</option>
+                <option value="{{ i }}" {% if i == selected_month %} selected {% endif %}>{{ calendar_module.month_name[i] }}</option>
             {% endfor %}
         </select>
         <label for="year">Year:</label>
         <select name="year" id="year" onchange="updateCalendar()">
             {% for y in range(current_year - 5, current_year + 6) %}
-                <option value="{{ y }}" {% if y == current_year %} selected {% endif %}>{{ y }}</option>
+                <option value="{{ y }}" {% if y == selected_year %} selected {% endif %}>{{ y }}</option>
             {% endfor %}
         </select>
     </form>
@@ -36,7 +36,10 @@
         {% for week in calendar %}
             <tr>
                 {% for day in week %}
-                    <td class="{% if loop.index == 7 and day != 0 %}sunday {% endif %}{% if day == current_day %}current-day{% endif %}">{{ day if day != 0 else '' }}</td>
+                    <td class="{% if loop.index == 7 and day != 0 %}sunday {% endif %}
+                               {% if day == current_day and selected_month == current_month and selected_year == current_year %}current-day{% endif %}">
+                        {{ day if day != 0 else '' }}
+                    </td>
                 {% endfor %}
             </tr>
         {% endfor %}

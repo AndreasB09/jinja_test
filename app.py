@@ -14,14 +14,14 @@ def home():
     now = datetime.now()
     current_year = now.year
     current_month = now.month
-    day = now.day
+    current_day = now.day
 
     selected_year = request.args.get('year', current_year, type=int)
     selected_month = request.args.get('month', current_month, type=int)
 
     calendar_data = create_calendar(selected_year, selected_month)
     week_days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    header = f"{day} {calendar.month_name[selected_month]} {selected_year}"
+    header = f"{current_day} {calendar.month_name[current_month]} {current_year}"
 
     return render_template(
         'calendar.html',
@@ -29,9 +29,11 @@ def home():
         header=header,
         week_days=week_days,
         calendar=calendar_data,
-        current_day=day,
-        current_month=selected_month,
-        current_year=selected_year,
+        current_day=current_day,
+        current_month=current_month,
+        current_year=current_year,
+        selected_month=selected_month,
+        selected_year=selected_year,
         calendar_module=calendar
     )
 
