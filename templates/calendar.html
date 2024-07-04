@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script>
-        function updateCalendar() {
-            document.getElementById('calendar-select').submit();
-        }
-    </script>
+    <script src="/static/app.js" defer></script>
 </head>
 <body>
     <h1>{{ header }}</h1>
@@ -44,5 +40,21 @@
             </tr>
         {% endfor %}
     </table>
+    <div class="navigation">
+        <form method="GET" action="/" class="nav-form">
+            <input type="hidden" name="month" value="{{ (selected_month - 1) if selected_month > 1 else 12 }}">
+            <input type="hidden" name="year" value="{{ (selected_year - 1) if selected_month == 1 else selected_year }}">
+            <button type="submit" class="nav-btn prev-btn">
+                <img src="{{ url_for('static', filename='images/down_arrow_green.svg') }}" alt="arrow button next" />
+            </button>
+        </form>
+        <form method="GET" action="/" class="nav-form">
+            <input type="hidden" name="month" value="{{ (selected_month + 1) if selected_month < 12 else 1 }}">
+            <input type="hidden" name="year" value="{{ (selected_year + 1) if selected_month == 12 else selected_year }}">
+            <button type="submit" class="nav-btn next-btn">
+                <img src="{{ url_for('static', filename='images/down_arrow_green.svg') }}" alt="arrow button next" />
+            </button>
+        </form>
+    </div>
 </body>
 </html>

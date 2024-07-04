@@ -26,7 +26,7 @@ td.current-day {
     background-color: #33897D;
     color: #fff;
 }
-form {
+#calendar-select {
     text-align: center;
     margin-top: 50px;
 }
@@ -49,4 +49,33 @@ select:focus {
     outline: none;
     border-color: #33897D;
     box-shadow: 0 0 5px rgba(51, 137, 125, 0.5);
+}
+.navigation {
+    position: fixed;
+    top: 600px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.nav_form {
+    margin: 0;
+}
+.nav-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.nav-btn img {
+    width: 30px;
+    height: 30px;
+}
+.prev-btn img {
+    transform: rotate(90deg);
+}
+.next-btn img {
+    transform: rotate(270deg);
 }
