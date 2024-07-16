@@ -7,3 +7,7 @@ Tooltips
 Event indicators
 Event popups
 Event management
+
+Add small indicators (dots or icons) on dates to represent events, tasks, or notes.
+When clicking on a date, show a popup or modal to add, edit, or view events for that date.
+Allow users to add, edit, and delete events, and display these events on the calendar.
